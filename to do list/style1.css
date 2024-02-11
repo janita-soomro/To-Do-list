@@ -1,0 +1,114 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightblue;
+}
+
+#one {
+    background-color: #ffffff;
+    padding: 45px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 img {
+    height: 75px;
+    margin-right: 10px;
+}
+
+.input-container {
+    display: flex;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px 0 0 5px;
+    border-right: none;
+    outline: none;
+    width:100%;
+}
+
+#add-btn {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: 1px solid orange; 
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+#add-btn:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+h1 img {
+    height: 40px; /* Increase the height as needed */
+    width: auto;
+    margin-left: 45px; /* Adjust as needed */
+}
+
+/* Align the <ul> elements */
+/* Align the <ul> elements */
+ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+}
+
+/* Style the list items with circles */
+ul li {
+    position: relative;
+    padding-left: 30px; /* Adjust spacing between circle and text */
+}
+
+/* Create circles for checkboxes */
+ul li::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 16px; /* Adjust size of the circle */
+    height: 16px; /* Adjust size of the circle */
+    border: 1px solid #000; /* Border of the circle */
+    border-radius: 50%; /* Make it a circle */
+}
+
+/* Add tick mark for checked items */
+ul li.checked::before {
+    background-color: #4caf50; /* Color of the tick mark */
+    content: "\2713"; /* Unicode for check mark */
+    text-align: center;
+    line-height: 16px; /* Center the check mark vertically */
+    color: #fff; /* Color of the check mark */
+}
+
+
+.your-ul-class li.checked {
+    text-decoration: line-through; 
+}
+.remove-button {
+    color: red; 
+    cursor: pointer; 
+    margin-left: 5px; 
+}

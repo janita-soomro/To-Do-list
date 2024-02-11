@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div id="container">
+        <div id="one">
+            <h1>To do List <img src="to do.png" alt="icon"></h1>
+            <div class="input-container">
+                <input type="text" id="inputbox" placeholder="Add a task">
+                <button id="add-btn">Add</button>
+            </div>
+            <ul class="your-ul-class">
+            </ul>
+        </div>
+    </div>
+    <script>
+        const inputbox = document.getElementById("inputbox");
+        const listContainer = document.querySelector(".your-ul-class");
+
+        window.onload = function() {
+            const savedData = localStorage.getItem("data");
+            if (savedData) {
+                listContainer.innerHTML = savedData;
+                addEventListenersToRemoveButtons(); // Attach event listeners to remove buttons
+                addEventListenersToTasks(); // Attach event listeners to tasks for crossing out
+            }
+        };
+
+        const addButton = document.getElementById("add-btn");
+        addButton.addEventListener("click", addTask);
+
+        function addTask() {
+            const task = inputbox.value.trim(); 
+
+            if (task === '') {
+                alert("You must write something");
+                return; 
+            }
+
+            let li = document.createElement("li");
+            li.textContent = task; 
+            li.addEventListener("click", function() {
+                this.classList.toggle("checked"); 
+                saveData(); 
+            });
+            
+            let removeButton = document.createElement("span");
+            removeButton.textContent = "❌"; 
+            removeButton.classList.add("remove-button");
+
+            removeButton.addEventListener("click", function(event) {
+                event.stopPropagation(); 
+                li.remove(); 
+                saveData(); 
+            });
+
+            li.appendChild(removeButton);
+            listContainer.appendChild(li);
+
+            inputbox.value = ''; 
+
+            saveData(); 
+        }
+
+        function saveData(){
+            localStorage.setItem("data", listContainer.innerHTML);
+        }
+
+        function addEventListenersToRemoveButtons() {
+            const removeButtons = document.querySelectorAll(".remove-button");
+            removeButtons.forEach(button => {
+                button.addEventListener("click", function(event) {
+                    event.stopPropagation(); 
+                    button.parentNode.remove(); 
+                    saveData();
+                });
+            });
+        }
+
+        function addEventListenersToTasks() {
+            const tasks = document.querySelectorAll(".your-ul-class li");
+            tasks.forEach(task => {
+                task.addEventListener("click", function() {
+                    this.classList.toggle("checked");
+                    saveData();
+                });
+            });
+        }
+    </script>
+</body>
+</html>
